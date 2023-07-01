@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "fbqbiubf",
+    "password": "As4ngP7XM7zoLd7qdwUp7O2WHR27tbQb",
+    "database": "fbqbiubf",
+    "host": "satao.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
+
