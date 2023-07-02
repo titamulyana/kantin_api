@@ -7,12 +7,14 @@ class productControllers {
   static async createProduct(req, res, next) {
     try {
       const userId = req.user.id;
+      const softdelete = false;
       const { name, price, type } = req.body;
       const product = await Product.create({
         userId,
         name,
         price,
         type,
+        softdelete : softdelete
       });
 
       res.status(201).json({
@@ -89,6 +91,7 @@ class productControllers {
   static async update(req, res, next) {
     try {
       const userId = req.user.id;
+      console.log(userId);
       const id = req.params.id;
       const { name, price, type } = req.body;
 
