@@ -427,7 +427,7 @@ class salesControllers {
           ],
         });
 
-        const totalPenjualanDone = penjualan.map((e) =>
+        const totalPenjualanDone = penjualanDone.map((e) =>
           e.get({ plain: true })
         );
 
@@ -438,7 +438,7 @@ class salesControllers {
             totalDone += price;
           });
         });
-        penjualan.total = total;
+
         return res.status(200).json({
           'not done': penjualan,
           'total not done': total,
@@ -495,7 +495,7 @@ class salesControllers {
           ],
         });
 
-        const totalPenjualanDone = penjualan.map((e) =>
+        const totalPenjualanDone = penjualanDone.map((e) =>
           e.get({ plain: true })
         );
 
@@ -506,7 +506,6 @@ class salesControllers {
             totalDone += price;
           });
         });
-        penjualan.total = total;
         return res.status(200).json({
           'not done': penjualan,
           'total not done': total,
