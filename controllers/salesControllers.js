@@ -203,7 +203,12 @@ class salesControllers {
           userId,
           status: 'not done',
         },
-        include: [Sales],
+        include: [
+          {
+            model: Sales,
+            as: 'Sales',
+          },
+        ],
       });
 
       const notDone = dataNotDone.map((transaction) =>
@@ -223,7 +228,12 @@ class salesControllers {
           userId,
           status: 'done',
         },
-        include: [Sales],
+        include: [
+          {
+            model: Sales,
+            as: 'Sales',
+          },
+        ],
       });
 
       const done = dataDone.map((transaction) =>
@@ -284,42 +294,13 @@ class salesControllers {
       const id = req.params.id;
       const userId = req.user.id;
 
-      // const sales = await Sales.findOne(
-      //   {
-      //     where: { id, userId },
-      //     attributes: {
-      //       exclude: ['updatedAt', 'createdAt'],
-      //       include: [
-      //         [
-      //           Sequelize.literal(
-      //             '(SELECT name FROM Products WHERE Products.id = Sales.productId AND Products.softdelete = false)'
-      //           ),
-      //           'name',
-      //         ],
-      //         [Sequelize.literal('createdAt'), 'tanggal_penjualan'],
-      //       ],
-      //     },
-      //   },
-      //   {}
-      // );
-
       const sales = await Sales.findOne({
         where: { id, userId },
-        attributes: {
-          // exclude: ['updatedAt', 'createdAt'],
-          include: [
-            [Sequelize.col('Product.name'), 'name'],
-            // ['createdAt', 'tanggal_penjualan'],
-          ],
-        },
         include: [
           {
             model: Product,
-            attributes: [],
-            where: {
-              id: Sequelize.col('Sales.productId'),
-              softdelete: false,
-            },
+            as: 'DataProduct',
+            attributes: ['name'],
           },
         ],
       });
